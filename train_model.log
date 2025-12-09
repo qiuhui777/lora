@@ -1,0 +1,107 @@
+(loratest) qiuhui@qiudeMacBook-Air Lora % python src/train.py
+
+A module that was compiled using NumPy 1.x cannot be run in
+NumPy 2.3.5 as it may crash. To support both 1.x and 2.x
+versions of NumPy, modules must be compiled with NumPy 2.0.
+Some module may need to rebuild instead e.g. with 'pybind11>=2.12'.
+
+If you are a user of the module, the easiest solution will be to
+downgrade to 'numpy<2' or try to upgrade the affected module.
+We expect that some modules will need time to support NumPy 2.
+
+Traceback (most recent call last):  File "/Users/qiuhui/Workspace/Code/Lora/src/train.py", line 4, in <module>
+    import torch
+  File "/Users/qiuhui/anaconda3/envs/loratest/lib/python3.12/site-packages/torch/__init__.py", line 1477, in <module>
+    from .functional import *  # noqa: F403
+  File "/Users/qiuhui/anaconda3/envs/loratest/lib/python3.12/site-packages/torch/functional.py", line 9, in <module>
+    import torch.nn.functional as F
+  File "/Users/qiuhui/anaconda3/envs/loratest/lib/python3.12/site-packages/torch/nn/__init__.py", line 1, in <module>
+    from .modules import *  # noqa: F403
+  File "/Users/qiuhui/anaconda3/envs/loratest/lib/python3.12/site-packages/torch/nn/modules/__init__.py", line 35, in <module>
+    from .transformer import TransformerEncoder, TransformerDecoder, \
+  File "/Users/qiuhui/anaconda3/envs/loratest/lib/python3.12/site-packages/torch/nn/modules/transformer.py", line 20, in <module>
+    device: torch.device = torch.device(torch._C._get_default_device()),  # torch.device('cpu'),
+/Users/qiuhui/anaconda3/envs/loratest/lib/python3.12/site-packages/torch/nn/modules/transformer.py:20: UserWarning: Failed to initialize NumPy: _ARRAY_API not found (Triggered internally at /Users/runner/work/pytorch/pytorch/pytorch/torch/csrc/utils/tensor_numpy.cpp:84.)
+  device: torch.device = torch.device(torch._C._get_default_device()),  # torch.device('cpu'),
+==================================================
+LoRA 微调训练开始
+==================================================
+
+使用设备: cpu
+
+正在加载模型: gpt2
+tokenizer_config.json: 100%|███████████████████████████████████████| 26.0/26.0 [00:00<00:00, 31.7kB/s]
+config.json: 100%|███████████████████████████████████████████████████| 665/665 [00:00<00:00, 2.28MB/s]
+vocab.json: 100%|████████████████████████████████████████████████| 1.04M/1.04M [00:00<00:00, 2.69MB/s]
+merges.txt: 100%|██████████████████████████████████████████████████| 456k/456k [00:00<00:00, 16.7MB/s]
+tokenizer.json: 100%|████████████████████████████████████████████| 1.36M/1.36M [00:00<00:00, 3.57MB/s]
+`torch_dtype` is deprecated! Use `dtype` instead!
+model.safetensors: 100%|███████████████████████████████████████████| 548M/548M [00:47<00:00, 11.7MB/s]
+generation_config.json: 100%|█████████████████████████████████████████| 124/124 [00:00<00:00, 487kB/s]
+✓ 模型加载完成
+
+配置 LoRA...
+/Users/qiuhui/anaconda3/envs/loratest/lib/python3.12/site-packages/peft/tuners/lora/layer.py:2285: UserWarning: fan_in_fan_out is set to False but the target module is `Conv1D`. Setting fan_in_fan_out to True.
+  warnings.warn(
+✓ LoRA 配置完成
+
+模型参数信息:
+可训练参数: 294,912 || 总参数: 124,734,720 || 可训练比例: 0.24%
+正在加载数据: ./data/train.json
+数据文件不存在，正在创建示例数据...
+✓ 已创建 1000 条示例数据到 ./data/train.json
+Map: 100%|██████████████████████████████████████████████| 1000/1000 [00:00<00:00, 15448.35 examples/s]
+✓ 数据集准备完成，共 1000 条样本
+
+==================================================
+开始训练...
+==================================================
+
+  0%|                                                                         | 0/375 [00:00<?, ?it/s]`loss_type=None` was set in the config but it is unrecognized. Using the default loss: `ForCausalLMLoss`.
+{'loss': 3.871, 'grad_norm': 0.3771078288555145, 'learning_rate': 2.6999999999999996e-05, 'epoch': 0.08}
+{'loss': 3.851, 'grad_norm': 0.5757482647895813, 'learning_rate': 5.6999999999999996e-05, 'epoch': 0.16}
+{'loss': 3.7422, 'grad_norm': 0.9799724817276001, 'learning_rate': 8.699999999999999e-05, 'epoch': 0.24}
+{'loss': 3.6752, 'grad_norm': 0.6187455654144287, 'learning_rate': 0.000117, 'epoch': 0.32}           
+{'loss': 3.6171, 'grad_norm': 0.8701465129852295, 'learning_rate': 0.000147, 'epoch': 0.4}            
+{'loss': 3.4001, 'grad_norm': 0.8574550747871399, 'learning_rate': 0.00017699999999999997, 'epoch': 0.48}
+{'loss': 3.1113, 'grad_norm': 0.7355496883392334, 'learning_rate': 0.00020699999999999996, 'epoch': 0.56}
+{'loss': 2.8403, 'grad_norm': 0.8298404216766357, 'learning_rate': 0.000237, 'epoch': 0.64}           
+{'loss': 2.639, 'grad_norm': 1.288160800933838, 'learning_rate': 0.000267, 'epoch': 0.72}             
+{'loss': 2.3382, 'grad_norm': 1.4940651655197144, 'learning_rate': 0.00029699999999999996, 'epoch': 0.8}
+{'loss': 2.1859, 'grad_norm': 1.6761077642440796, 'learning_rate': 0.0002901818181818182, 'epoch': 0.88}
+{'loss': 1.8867, 'grad_norm': 1.59913969039917, 'learning_rate': 0.00027927272727272724, 'epoch': 0.96} 
+{'loss': 1.7367, 'grad_norm': 1.6699570417404175, 'learning_rate': 0.00026836363636363635, 'epoch': 1.04}
+{'loss': 1.5744, 'grad_norm': 2.152066230773926, 'learning_rate': 0.0002574545454545454, 'epoch': 1.12} 
+{'loss': 1.4353, 'grad_norm': 2.401759624481201, 'learning_rate': 0.00024654545454545453, 'epoch': 1.2} 
+{'loss': 1.3702, 'grad_norm': 2.1986243724823, 'learning_rate': 0.0002356363636363636, 'epoch': 1.28}   
+{'loss': 1.2586, 'grad_norm': 2.096372604370117, 'learning_rate': 0.0002247272727272727, 'epoch': 1.36} 
+{'loss': 1.1542, 'grad_norm': 2.8161604404449463, 'learning_rate': 0.0002138181818181818, 'epoch': 1.44}
+{'loss': 1.0853, 'grad_norm': 2.1999402046203613, 'learning_rate': 0.0002029090909090909, 'epoch': 1.52}
+{'loss': 0.967, 'grad_norm': 2.8730554580688477, 'learning_rate': 0.00019199999999999998, 'epoch': 1.6} 
+{'loss': 0.9739, 'grad_norm': 2.174375295639038, 'learning_rate': 0.00018109090909090907, 'epoch': 1.68}
+{'loss': 0.8889, 'grad_norm': 3.403989553451538, 'learning_rate': 0.00017018181818181816, 'epoch': 1.76}
+{'loss': 0.8515, 'grad_norm': 2.6950318813323975, 'learning_rate': 0.00015927272727272725, 'epoch': 1.84}
+{'loss': 0.79, 'grad_norm': 2.7171812057495117, 'learning_rate': 0.00014836363636363636, 'epoch': 1.92} 
+{'loss': 0.7998, 'grad_norm': 3.0746123790740967, 'learning_rate': 0.00013745454545454545, 'epoch': 2.0}
+{'loss': 0.7256, 'grad_norm': 2.3888018131256104, 'learning_rate': 0.00012654545454545454, 'epoch': 2.08}
+{'loss': 0.6837, 'grad_norm': 2.3294050693511963, 'learning_rate': 0.00011563636363636362, 'epoch': 2.16}
+{'loss': 0.6643, 'grad_norm': 2.8767189979553223, 'learning_rate': 0.00010472727272727272, 'epoch': 2.24}
+{'loss': 0.6525, 'grad_norm': 2.5815489292144775, 'learning_rate': 9.381818181818181e-05, 'epoch': 2.32}
+{'loss': 0.617, 'grad_norm': 2.540944814682007, 'learning_rate': 8.29090909090909e-05, 'epoch': 2.4}    
+{'loss': 0.6077, 'grad_norm': 3.0524446964263916, 'learning_rate': 7.199999999999999e-05, 'epoch': 2.48}
+{'loss': 0.5816, 'grad_norm': 2.4915616512298584, 'learning_rate': 6.109090909090909e-05, 'epoch': 2.56}
+{'loss': 0.5493, 'grad_norm': 2.69169282913208, 'learning_rate': 5.0181818181818174e-05, 'epoch': 2.64} 
+{'loss': 0.5767, 'grad_norm': 2.3668243885040283, 'learning_rate': 3.927272727272727e-05, 'epoch': 2.72}
+{'loss': 0.5425, 'grad_norm': 2.7560510635375977, 'learning_rate': 2.836363636363636e-05, 'epoch': 2.8} 
+{'loss': 0.5528, 'grad_norm': 2.456867218017578, 'learning_rate': 1.7454545454545452e-05, 'epoch': 2.88}
+{'loss': 0.5314, 'grad_norm': 2.360328435897827, 'learning_rate': 6.545454545454545e-06, 'epoch': 2.96} 
+config.json: 100%|█████████████████████████████████████████████████████| 665/665 [00:00<00:00, 1.35MB/s]
+{'train_runtime': 205.2441, 'train_samples_per_second': 14.617, 'train_steps_per_second': 1.827, 'train_loss': 1.5893509318033854, 'epoch': 3.0}
+100%|█████████████████████████████████████████████████████████████████| 375/375 [03:25<00:00,  1.83it/s]
+
+保存模型...
+
+==================================================
+训练完成！
+模型已保存到: ./models/lora_model
+==================================================

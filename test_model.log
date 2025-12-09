@@ -1,0 +1,84 @@
+(loratest) qiuhui@qiudeMacBook-Air Lora % python src/inference.py
+
+A module that was compiled using NumPy 1.x cannot be run in
+NumPy 2.3.5 as it may crash. To support both 1.x and 2.x
+versions of NumPy, modules must be compiled with NumPy 2.0.
+Some module may need to rebuild instead e.g. with 'pybind11>=2.12'.
+
+If you are a user of the module, the easiest solution will be to
+downgrade to 'numpy<2' or try to upgrade the affected module.
+We expect that some modules will need time to support NumPy 2.
+
+Traceback (most recent call last):  File "/Users/qiuhui/Workspace/Code/Lora/src/inference.py", line 2, in <module>
+    import torch
+  File "/Users/qiuhui/anaconda3/envs/loratest/lib/python3.12/site-packages/torch/__init__.py", line 1477, in <module>
+    from .functional import *  # noqa: F403
+  File "/Users/qiuhui/anaconda3/envs/loratest/lib/python3.12/site-packages/torch/functional.py", line 9, in <module>
+    import torch.nn.functional as F
+  File "/Users/qiuhui/anaconda3/envs/loratest/lib/python3.12/site-packages/torch/nn/__init__.py", line 1, in <module>
+    from .modules import *  # noqa: F403
+  File "/Users/qiuhui/anaconda3/envs/loratest/lib/python3.12/site-packages/torch/nn/modules/__init__.py", line 35, in <module>
+    from .transformer import TransformerEncoder, TransformerDecoder, \
+  File "/Users/qiuhui/anaconda3/envs/loratest/lib/python3.12/site-packages/torch/nn/modules/transformer.py", line 20, in <module>
+    device: torch.device = torch.device(torch._C._get_default_device()),  # torch.device('cpu'),
+/Users/qiuhui/anaconda3/envs/loratest/lib/python3.12/site-packages/torch/nn/modules/transformer.py:20: UserWarning: Failed to initialize NumPy: _ARRAY_API not found (Triggered internally at /Users/runner/work/pytorch/pytorch/pytorch/torch/csrc/utils/tensor_numpy.cpp:84.)
+  device: torch.device = torch.device(torch._C._get_default_device()),  # torch.device('cpu'),
+==================================================
+LoRA 模型推理测试
+==================================================
+
+使用设备: cpu
+
+正在加载模型: ./models/lora_model
+`torch_dtype` is deprecated! Use `dtype` instead!
+✓ 模型加载完成
+
+==================================================
+开始生成测试
+==================================================
+
+测试 1:
+输入: 问题：什么是机器学习？
+回答：
+输出: 问题：什么是机器学习？
+回答：机器学习是人工智能的一个分支，它使一个分支，它使一个分支，它使一个分支，它使一个分支，是一它使一个分支. 是确编程。
+回�
+--------------------------------------------------
+
+测试 2:
+输入: 问题：什么是深度学习？
+回答：
+输出: 问题：什么是深度学习？
+回答：深度学习是人工深度学习数据的一个子集，使用多层神经网络来学习数据的数量。多层数学习数、机器学习数、机器学习数、救学习�
+--------------------------------------------------
+
+测试 3:
+输入: 问题：什么是 LoRA？
+回答：
+输出: 问题：什么是 LoRA？
+回答：LoRA（Low-Rank Adaptation）是一种参数的数调方法，通过低秩矩阵分解来减少可计练参数的数量。多层数学、机器学习器学习器学习器学习器学�
+--------------------------------------------------
+
+
+进入交互模式（输入 'quit' 退出）:
+--------------------------------------------------
+
+请输入问题: 什么是Transformer
+
+生成结果:
+问题：什是Transformer
+回答：Transformer 是一种基于注意力机制的神经网络架构，是一种基于注愛机制的神络构，是数据的复杂表示。进性老。而器存在高基来存习基束. 是一秀
+
+
+请输入问题: 什是Transformer？
+
+生成结果:
+问题：什是Transformer？
+回答：Transformer 是一种基于注意力机制的神经网络架构，是机制的神经网络来构，是注愛机分来凶构的数据科学、机分来数据科学习型。而性。太多�
+
+
+请输入问题: Python 是什么？
+
+生成结果:
+问题：Python 是什么？
+回答：Python 是一种基矺编程语言，通过秩矺编程语言洁的语法和强大的功能而闻名，通过广泛用于数据编程诼。语编稼�来学、机器�

@@ -1,0 +1,30 @@
+# 模型配置
+model:
+  name: "gpt2"  # 使用小型 GPT-2 模型
+  cache_dir: "./models/cache"
+
+# LoRA 配置
+lora:
+  r: 8  # LoRA rank
+  lora_alpha: 16
+  lora_dropout: 0.1
+  target_modules: ["c_attn"]  # GPT-2 的注意力层
+  bias: "none"
+  task_type: "CAUSAL_LM"
+
+# 训练配置
+training:
+  output_dir: "./models/lora_model"
+  num_epochs: 3
+  batch_size: 4
+  learning_rate: 3.0e-4
+  warmup_steps: 100
+  logging_steps: 10
+  save_steps: 500
+  max_length: 128
+  gradient_accumulation_steps: 2
+
+# 数据配置
+data:
+  train_file: "./data/train.json"
+  max_samples: 1000  # 限制样本数量以便快速训练
