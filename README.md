@@ -23,15 +23,13 @@ lora-finetuning/
 - 至少 8GB RAM
 - 建议有 GPU，但 CPU 也可以运行
 
+```
 conda create -n loratest python=3.12
-# To activate this environment, use
-#
-#     $ conda activate loratest
-#
-# To deactivate an active environment, use
-#
-#     $ conda deactivate
-
+To activate this environment, use
+    $ conda activate loratest
+To deactivate an active environment, use
+    $ conda deactivate
+```
 
 ## 快速开始
 
@@ -68,7 +66,7 @@ python src/inference.py
 - 包含完整的训练和推理流程
 
 ## 重新训练的方法
-
+```
 # 删除旧模型
 rm -rf models/
 
@@ -77,3 +75,4 @@ python src/train.py
 
 # 测试
 python src/inference.py
+```
